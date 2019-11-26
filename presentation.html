@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentation Javascript</title>
+
+<script>
+  //variables
+  const name1= 'Augustine';
+
+  var var1= 'hello'; // scope global, meme si dans boucle/fonction
+  let age= 10; // scope global seulement si hors boucle/fonction
+
+  let a= 1;
+  console.log(++a); //2
+  console.log(a++); //2
+
+
+  let b= 3;
+  console.log( a == b); // true
+  console.log( a === b); // false
+
+  /* Data Types */
+  /* boolean
+  /* int
+  /* Array
+  /* String
+  /* object
+  /* float
+  /* JSON
+  **/
+
+  /* String a = 'Michel';
+  a.equal('Michel'); // joda code **/
+
+
+  // template litteraux
+  let chaine= "loren ipsum";
+  chaine= "loren";
+
+  chaine= 'b = s(b)';
+
+  let message= 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, consequuntur et illo illum ipsum molestias mollitia ' +
+      'non quasi rem veniam? Ab adipisci est iste laborum sapiente? Ducimus odio quaerat voluptatem!';
+  console.log(message);
+
+  // decomposition / destructuration
+  let list= [1, 2, 3, 4];
+  let [x, y, z] = list;
+
+  let [xx, zz] = list;
+
+  console.log(x, y, z);
+  console.log(xx, zz);
+
+  let list2 = [10, 11, 12];
+  let [r, s, t = 0, u = 20] = list2;
+
+  console.log(r, s, t, u);  //10 11 12 20
+
+  let object ={ name: 'Bond', firstname: 'James', job: 'Secret Agent'};
+  let { name, firstname, job } = object;
+  console.log(name, firstname, job); //Bond James Secret Agent
+
+  let { name: n, firstname: f, job: j } = object;
+  console.log(n, f, j); //Bond James Secret Agent
+
+  let obj= [r, s, t, u];
+  console.log(obj);
+
+  // Exercice1: inverser les variables
+  console.log('EXERCICE 1:');
+  let num1 = 1, num2 = 2;
+  console.log(num1, num2);
+  // solution
+  [num2, num1] = [num1, num2]
+  console.log(num1, num2);
+  let reverse = a=>a.sort(a=>1)
+
+</script>
+ </head>
+
+<body>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

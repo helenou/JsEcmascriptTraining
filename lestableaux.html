@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tableaux</title>
+
+  <script>
+      let cars= ['Peugeot', 'Citroen', 'Ford', 'Renault', 'Hyundai', 'Seat'];
+      console.log(cars);
+
+      console.log(`Mon tableau contient ${cars.length} valeurs;
+          La première valeur est ${cars[0]} et la dernière valeur est $}{cars[cars.length-1]} `);  /* AltGr + 7 => ` */
+
+      console.log("--------------------------Boucle For");
+      for (let i=0; i<cars.length;i++){
+          console.log(`cars[${i}] = ${cars[i]}`);
+      }
+
+      console.log("----------------------Boucle for IN")
+      for (index in cars){
+          console.log(`cars[${index}] = ${cars[index]}`)
+      }
+      console.log("----------------------Boucle for of")
+      for (let value of cars){
+          console.log(value);
+      }
+      console.log("--------------------ForEach")
+      cars.forEach(function (value,index,array) {
+          console.log(`cars[${index}] = ${value}`);
+      })
+
+      // Ajouter avec 'push'
+      cars.push('Fiat');
+      console.log(cars);
+      cars.push('Tesla', 'Toyota', 'Nissan');
+      console.log(cars);
+
+      // Suppression avec 'splice'
+      // avec 2 params
+      let removed = cars.splice(cars.indexOf('Fiat'), 1); // (index élt à supprimer, qtté valeurs à suppr)
+      console.log(`La valeur ${removed} a été supprimée`);
+      console.log(cars);
+      // avec 3 params: insérer à la place de
+      cars.splice(cars.indexOf('Citroen'), 1, 'Alpine');
+      console.log(cars);
+
+      // Ajouter/insérer à l'index/à la place de (en gardant) // Use 0
+      cars.splice(cars.indexOf('Alpine'), 0, 'Citroen');
+      console.log(cars);
+
+      // les chaines
+      console.log(`La fonction join: ${chaine = cars.join(', ')}`);
+      console.log(`La fonction split: ${chaine.split(', ')}`);
+      console.log(`La fonction sort(): ${cars.sort()}`);
+      console.log(`La fonction reverse(): ${cars.reverse()}`);
+
+      // Tri sur le 2e caractère de chaque string de la chaine
+
+      /*var myFunc = function(secondChar) {*/
+  /*    var chaine2nds = [];
+      {
+          function myFunc() {
+              for (var i = 0; i < cars.length; i += 1) {
+
+                  console.log(cars.charAt(1));
+                  //chaine2nds.push(cars.charAt(1));
+                  //console.log(chaine2nds);
+              }//console.log(chaine2nds);
+          }
+
+      };*/
+            /*return null;
+        } return chaine2nds;
+      };*/
+
+    //console.log(myfunction2nd);
+      /*var myFunc = function (letter) {
+          for (var i = 0; i < letter.length; i += 1) {
+              letter.charAt(0);
+              console.log(letter.charAt(0));
+          }
+      }
+*/
+     /* let index=0;
+      for (index in cars){
+          console.log(`cars[${index}] = ${cars[index]}`)
+      }*/
+      /*let tri = cars.sort(chaine2nds.join(', '));
+      console.log(cars);
+      console.log(tri);*/
+
+      //console.log
+    // Recherche
+   // console.log(cars.find(function(value) {}))
+
+    cars.findIndex(function(value){
+        return value=== 'Citroen';
+    });
+
+    let numbers= [1,2,3,4,5];
+    let nonNumbers= numbers.map(function(value) {
+        return value*2;
+    });
+
+
+   /* Operateur arrow => */ // Lambdas
+    numbers.map((value) => {
+        return value*2;
+    });
+
+    // 1 seul param, pas de parenthèses sur value
+    numbers.map( value => {
+        return value*2;
+    });
+
+    numbers.map( value => value*2 );
+
+/*      {function a() {
+
+      }
+      }();*/
+
+      // Object
+      let object = {
+          numbers ;
+          paire= [];
+          foreach: function(){
+              console.log('object', this); // Object
+              _this = this;
+              this.numbers.forEach(function(value, index, array) {
+                    console.log('forEach', this); // Window
+                    console.log(_this); // Object
+              });
+      },
+
+      foreach2: function() {
+          this.numbers.forEach( (value, index, array) {
+              console.log('forEach', this); // Object
+
+          });
+         // return numbers;
+
+      };
+
+
+  </script>
+</head>
+

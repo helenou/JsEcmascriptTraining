@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau</title>
+    <script>
+        let cars=['Peugeot', 'Citroen', 'Ford','Renault','Ferrari','Seat','Hyundai'];
+        console.log(cars);
+        console.log(`Cars contient ${cars.length} voitures,
+                la première valeur est ${cars[0]} et la dernière est ${cars[cars.length-1]}`);
+        console.log("--------------------------Boucle For");
+        for (let i=0; i<cars.length;i++){
+            console.log(`cars[${i}] = ${cars[i]}`);
+        }
+        console.log("----------------------Boucle for IN")
+        for (index in cars){
+            console.log(`cars[${index}] = ${cars[index]}`)
+        }
+        console.log("----------------------Boucle for of")
+        for (let value of cars){
+            console.log(value);
+        }
+        console.log("--------------------ForEach")
+        cars.forEach(function (value,index,array) {
+            console.log(`cars[${index}] = ${value}`);
+        })
+        //ajouter
+        cars.push('Fiat','Audi');
+        console.log(cars);
+
+        //Supprimer
+        let removed =cars.splice(cars.indexOf('Fiat'),1);
+        console.log(removed);
+        //Remplacer
+        cars.splice(cars.indexOf("Citroen"),1,'Bugatti');
+        console.log(cars);
+
+        cars.splice(cars.indexOf("Bugatti"),0,"Citroen");
+        console.log(cars);
+
+        let chaine
+        console.log(chaine=cars.join(', '));
+        console.log(chaine.split(', '));
+        //trie
+        console.log(cars.sort());
+        console.log(cars.reverse());
+
+        cars.sort((a,b)=>{
+            a=a.toLowerCase();
+            b=b.toLowerCase();
+           if(a[1]<b[1]){
+               return -1;
+           }
+            else if(a[1]>b[1]){
+                return 1;
+           }else{
+                return 0;
+           }
+
+        })
+        console.log(cars);
+
+        //Recherche
+        console.log(cars.find(function (value){return value ==='Bugatti'}));
+        console.log(cars.filter(function (value,index,array) {
+            return value==='Bugatti';
+
+        }));
+        console.log(cars.findIndex(function (value) {
+            return value ==='Ferrari';
+        }))
+
+        //Modifié la tableau
+        let numbers=[1,2,3,4,5];
+       let newNumbers= numbers.map(function (value) {
+            return value*2;
+        })
+        console.log(numbers,newNumbers);
+
+       //arrow function
+        let newNumbers2= numbers.map( (value)=> {
+            return value*2;
+        })
+        console.log(newNumbers2);
+        let object={
+            numbers,
+            paire:[],
+            foreach:function () {
+                console.log(this);
+                _this=this;
+                this.numbers.forEach(function (value, index, array) {
+                    console.log('foreach',this,_this);
+                })
+            },
+            foreach2:function () {
+                console.log(this);
+
+                this.numbers.forEach((value, index, array)=> {
+                    console.log('foreach',this);
+                })
+            }
+        }
+        object.foreach();
+        object.foreach2();
+        //Exercice Palindrome
+        let palindrome="Noel a trop par rapport à Leon";
+        palindrome=palindrome.toLowerCase();
+        let reverse='';
+        for(let i=palindrome.length-1; i>=0;i--){
+            reverse+=palindrome[i];
+        }
+
+        if(reverse===palindrome){
+            console.log(palindrome)
+        }
+        console.log(reverse);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

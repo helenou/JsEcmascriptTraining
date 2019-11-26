@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collection</title>
+    <script>
+        //dictionnaire
+        let map=new Map();
+        map.set('name','John')
+            .set('email','john.doe@gmail.com')
+            .set('phone','06 118 712 00');
+        console.log(map);
+        console.log(`map size= ${map.size}`);
+        console.log(`Numéro de téléphone ${map.get('name')} : ${map.get('phone')}`);
+        map.delete('phone');
+        if(map.has('phone')){
+            console.log(`Numéro de téléphone ${map.get('name')} : ${map.get('phone')}`);
+        }else{
+            console.log(`Numéro de téléphone ${map.get('name')} :..........`);
+        }
+
+        console.log(map.keys());
+        console.log(map.values());
+
+        for(let value of map.values()){
+            console.log(value);
+        }
+        for(let [key, value] of map.entries()){
+            console.log(`${key}:${value}`);
+        }
+        map.forEach(((value, key, map1) => {
+            console.log(`${key}:${value}`);
+
+        }));
+      //Tableau valeur unique
+        let set=new Set();
+        set.add('John').add("Tyrion").add("Bob").add("John");
+        console.log(`Set size: ${set.size}`);//3
+        set.delete('Tyrion');
+
+        if(!set.has('Tyrion')){
+            console.log('Bonne nouvelle !');
+        }
+        for ([key,value] of set.entries()){
+            console.log(`${key.toUpperCase().padEnd(10, ' ')}: ${value}`);
+        }
+        set.clear();
+
+        let info={name:'John', email:'john@gmail.com'};
+        let address={city:'lille', country:'France'};
+        let user={};
+
+        Object.assign(user, info,address);
+        console.log(user);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

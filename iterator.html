@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iterator</title>
+    <script>
+        let arrayCollection={
+            values: [],
+            add(value){
+                this.values.push(value);
+                return this;
+            },
+            [Symbol.iterator](){
+                let index=0;
+                let values=this.values
+                return{
+                    next(){
+                        return{value:values[index++],done:values.length<index};
+                    }
+                }
+            }
+        }
+        arrayCollection.add(1).add(2).add(3);
+        console.log(arrayCollection.values);
+        for(let value of arrayCollection){
+            console.log(value);
+        }
+
+        let it=arrayCollection[Symbol.iterator]();
+
+        let data=it.next();
+        while (!data.done){
+            console.log(data.value);
+            data=it.next();
+        }
+
+        //generator / don't forget *
+
+        function* generator(limit) {
+            let index=0;
+
+            while (index<=limit){
+                yield index;
+                index++;
+            }
+
+        }
+
+
+        for(let value of generator((10))){
+            console.log(value);
+        }
+
+
+        // Exercice suite de Fibonnaci (Leon)
+        function* suite (limit) {
+            let index=0;
+            let a=0;
+            let b=1;
+            yield 1;
+            while ((a+b)<=limit){
+                if(index % 2===0){
+                    a=a+b;
+                    yield a;
+                }else {
+                    b=a+b;
+                    yield b;
+                }
+
+                index++;
+            }
+        }
+
+        console.log("-------------------suite Fibonacci-----------------");
+        for(let value of suite((10000))){
+            console.log(value);
+        }
+
+        /* Corrigé Fibonacci using *generator() */
+        function *fibonacci(){
+            let prev= 0;
+            let current= 1;
+
+            yield current;  // like return statement but doesn't end
+
+            while(current < 100) {
+                [prev, current] = [current, current+prev]
+                yield(current); // return at each iteration
+            }
+        }
+
+        for(let value of fibonacci()) {
+            console.log(value);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

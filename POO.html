@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POO</title>
+
+  <script>
+  // Json = js object notation
+  let object = new Object();
+  object.foo= 'bar';  // Attribute
+  object.bar= function(){   // method private
+      return 'Hello';
+  }
+
+
+/*  object.prototype.zab = function(){
+      return 1;
+  }*/
+
+/*ES5 class/function*/
+function Personne(first, last, age){
+    this.first = first;
+    this.last = last;
+    this.age = age;
+}
+Personne.prototype.getAge = function() {
+    return this.age;
+}
+
+let p = new Personne('jean', 'dujardin', 40);
+console.log(p, `${p.first} ${p.last} a ${p.getAge()} ans`);
+
+  let json = {
+      foo: 'bar', bar: 1, bool: true, users: [], private: { public: 'protected'}
+  };
+
+  let es6Object = {
+      foo: 'bar',
+      bar() {
+          return 'Hello';
+      }
+  }
+      console.log(`Hello ${es6Object} `);
+
+
+/*ECMA6 norme de classe*/
+  class Voiture{
+      constructor(marque, modele, couleur) {
+          this._marque=marque;
+          this._modele = modele;
+          this._couleur = couleur;
+      }
+
+      get modele() {
+          return this._modele;
+      }
+
+      set modele(value) {
+          this._modele = value;
+      }
+
+      get couleur() {
+          return this._couleur;
+      }
+
+      set couleur(value) {
+          this._couleur = value;
+      }
+
+      get marque(){
+          return this._marque;
+      }
+      set marque(marque){
+          this._marque=marque;
+      }
+      demarrer(){
+          return `la ${this.constructor.name} démarre `;
+      }
+      static klaxooner(){
+
+          return `Pouet pouet !`;
+      }
+  }
+
+  class Amblance extends Voiture{
+
+      constructor(marque, modele, couleur) {
+          super(marque, modele, couleur);
+          this.sirene=false;
+
+      }
+
+      demarrer() {
+          return `Pim pom ${super.demarrer()}`;
+      }
+
+      static klaxooner(){
+          return `Pim Pon ${Voiture.klaxooner()}`;
+      }
+  }
+
+  let mavoiture= new Voiture("Tesla","S","noire");
+  console.log(maVoiture.demarrer());
+  console.log(maVoiture);
+  console.log(typeof maVoiture);
+  console.log(maVoiture instanceof Voiture);
+
+  console.log(maVoiture.constructor.name);
+  console.log((2).constructor.name);
+  console.log([].constructor.name);
+  maVoiture.marque='Peugeot';//setter
+  console.log(maVoiture.marque, maVoiture._marque)//getter
+  console.log(Voiture.klaxooner());
+
+  //Exercice: crée un tableau de voiture et d'ambulance et lire le tableau si c'est une ambulance mettre la sirene
+  let maVoiture2=new Voiture("Jaguar", "Type E", "Verte");
+  let maVoiture3=new Voiture("Jaguar", "Type E", "Verte");
+  let maVoiture4=new Voiture("Jaguar", "Type E", "Verte");
+  let maVoiture5=new Voiture("Jaguar", "Type E", "Verte");
+  let maVoiture6=new Voiture("Jaguar", "Type E", "Verte");
+  let amblance1=new Ambulance("Jaguar", "Type E", "Verte");
+  let amblance2=new Ambulance("Jaguar", "Type E", "Verte");
+  let amblance3=new Ambulance("Jaguar", "Type E", "Verte");
+  let amblance4=new Ambulance("Jaguar", "Type E", "Verte");
+  let amblance5=new Ambulance("Jaguar", "Type E", "Verte");
+  let tableau=[maVoiture2,
+      maVoiture3,
+      maVoiture4,
+      maVoiture5,
+      maVoiture6,
+      amblance1,
+      amblance2,
+      amblance3,
+      amblance4,
+      amblance5];
+  for(let value of tableau){
+      if(value instanceof Ambulance){
+          value.sirene=true;
+      }
+      console.log(value, value.demarrer());
+  }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+  </script>
+</head>
+
+<body>
+
+</body>
+</html>
