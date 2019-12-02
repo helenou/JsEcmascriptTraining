@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Object Model</title>
+
+  <script>
+
+    //console.log(document.getElementsByTagName('p'));
+
+    //console.log(typeof (document.getElementsByTagName('p'))[1] );
+   // console.log( document.getElementsByTagName('p')[0].addEventListener('click', event => alert("Toto")) );
+
+
+    window.addEventListener('DOMContentLoaded',function () {
+        document.querySelector('#paragraph').addEventListener('click', e => alert("Encore ce Toto !!") );
+        // Other way to write it
+        document.querySelector('#paragraph').addEventListener('click', function () {
+            alert('Encore Toto 3e !!');
+        });
+        document.querySelectorAll('p').forEach( (p) => {
+            p.style.color ='red';
+        });
+
+
+        /* IMG*/
+        let img =document.querySelector('img');
+        img.addEventListener('mouseover', () => {
+            img.setAttribute('src', './img/images.jpg' );
+
+            console.log(img.getAttribute('src'), img.src);
+        });
+
+/*        // 2nd version 'this' allowed: (meilleur dans ce contexte)
+        img.addEventListener('mouseover', function() {
+            this.setAttribute('src', './img/informatique.jpg' );
+
+            console.log(this, img.getAttribute('src'), img.src);
+        });*/
+
+
+        // change img
+/*        img.addEventListener('mouseover', function() {
+            this.setAttribute('src', './img/sciences.png' );
+        });*/
+
+
+        // solution 1
+        let i= 0;
+        document.querySelector('#btn').addEventListener('click', function () {
+            if(i === 0) {
+                img.setAttribute('src', './img/sciences.png' );
+                i = 1;
+            }else {
+                img.setAttribute('src', './img/informatique.jpg');
+                i = 0;
+            }
+        });
+
+
+        //function changImg() {
+        // document.querySelector('#btn').addEventListener('click', function () {
+        //     if(i === 0) {
+        //         img.setAttribute('src', './img/sciences.png');
+        //         i = 1;
+        //     }else {
+        //         img.setAttribute('src', './img/informatique.jpg');
+        //         i = 0;
+        //     }
+        // });
+
+
+        // solution 2
+        document.querySelector('#btn').addEventListener('click', function () {
+            if(img.getAttribute('src') === './img/informatique.jpg' ) {
+                img.setAttribute('src', './img/sciences.png') ;
+            }else {
+                img.setAttribute('src', './img/informatique.png');
+            }
+        });
+
+
+        // innerHTLM, .innertext, .textContent
+        let paragraph = document.querySelector('#content');
+        document.querySelector('#innerHTML').addEventListener('click', function () {
+            paragraph.innerHTML = 'Hello <b>World</b>';
+        });
+        document.querySelector('#innertext').addEventListener('click', function () {
+          //paragraph.innerText = 'Hello <b>World</b>';
+            let hello= 'Hello ';
+            paragraph.innerText = `${hello}
+            <b>World</b>`;
+        });
+        document.querySelector('#textContent').addEventListener('click', function () {
+            paragraph.textContent = "Hello <b>World</b>";
+        });
+
+
+    }); // end main function
+  </script>
+
+</head>
+
+
+<body>
+<h1>Document Object Model</h1>
+<hr/>
+
+<p onclick="alert('bravo!');">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem blanditiis culpa ea impedit laborum minima
+  reprehenderit sint. Deleniti ipsam nesciunt repudiandae veniam! Consectetur excepturi illo nisi saepe sit.
+  Aliquid atque cumque ea eveniet id! Animi atque debitis dignissimos dolorum eaque, eos fuga itaque necessitatibus nisi pariatur perspiciatis quasi reiciendis
+    sapiente sit, voluptatibus. Non nulla quisquam quo recusandae saepe!</p>
+<p id="paragraph"><span>Assumenda, porro, quidem. Ad enim, expedita id laboriosam minima quae quia
+    sapiente totam! Accusantium animi architecto, doloremque explicabo facilis iusto maiores molestias quia sed temporibus. Dolorum eum nesciunt obcaecati totam!</span>
+  Ipsa laboriosam nesciunt nisi non, saepe sunt. Aliquam assumenda corporis cupiditate deserunt dicta dolor, eveniet exercitationem impedit incidunt
+    ipsum iure magni nam nemo optio, perferendis, placeat quaerat repellendus sapiente? Est. Ad ducimus, illo ipsam molestiae nobis
+    tenetur. Accusamus,
+    accusantium consequuntur cum cupiditate dolorum eaque, facilis fugit ipsum magnam modi officia porro possimus quibusdam recusandae rem suscipit veniam
+    vitae voluptates voluptatum!</p>
+<p><span>Assumenda, porro, quidem. Ad enim, expedita id laboriosam minima quae quia
+   consequuntur cum cupiditate dolorum eaque, facilis fugit ipsum magnam modi officia porro possimus quibusdam recusandae rem suscipit
+  veniam vitae voluptates voluptatum!</span>
+</p>
+
+<hr/>
+<img id="btn" src="./img/informatique.jpg" alt="sciences & technology"/>
+<hr/>
+
+
+  <button id="innerHTML">innerHTML</button>
+  <button id="innertext">innerText</button>
+  <button id="textContent">textContent</button>
+
+<p id="content"></p>
+
+
+</body>
+</html>

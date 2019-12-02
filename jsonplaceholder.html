@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Placeholder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script>
+        function toHtmlTable(users){
+            let html = '';
+            for(let user of users){
+                html += `<tr>
+    <td>${user.id}</td>
+    <td>${user.name}</td>
+    <td>${user.username}</td>
+    <td>${user.email}</td>
+    <td>${user.phone}</td>
+</tr>`;
+            }
+
+            return html;
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+            let waiting = document.querySelector('#waiting');
+            let target = document.querySelector('#target');
+
+            document.querySelector('#load').addEventListener('click', function(){
+
+                // Asynchrone
+                xhr.onreadystatechange = function(){
+
+                    waiting.innerText = 'En attente de la ressource ...';
+
+                    if( xhr.readyState === xhr.DONE && xhr.status === 200 ){
+                        waiting.innerText = "";
+                        target.innerHTML = toHtmlTable(xhr.response); //JSON.parse(text)
+                    }
+                };
+
+
+                xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+                xhr.send();
+            });
+        })
+    </script>
+</head>
+<body>
+<main class="container">
+    <header class="pt-5 border-bottom">
+        <h1>JSONPlaceholder</h1>
+    </header>
+    <div class="my-3 d-flex">
+        <button class="btn btn-outline-primary" id="load">Lister les utilisateurs</button>
+        <p id="waiting" class="text-info m-0 px-3 align-self-center"></p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody id="target">
+
+        </tbody>
+    </table>
+</main>
+
+
+</body>
+</html>

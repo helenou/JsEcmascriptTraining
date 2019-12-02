@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attribut Data</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+
+            let element = document.querySelector('[data-name=color]');
+
+            element.addEventListener('mouseover', function(){
+                //let color = this.getAttribute('data-color');
+                let color = this.dataset.color;
+                this.style.color = color;
+            });
+            element.addEventListener('mouseout', function(){
+                this.removeAttribute('style');
+            });
+            // http://demo.dawan.biz/webmaster/exercice9/images.zip
+        });
+    </script>
+    <style>
+        p {
+            background-color: #fff;
+            padding: 10px
+        }
+    </style>
+</head>
+<body>
+
+<p data-name="color" data-color="#D45FE8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At dolorum incidunt rerum similique unde! Adipisci atque,
+    consequatur dolor ea harum iste modi quidem recusandae repellendus sed similique sint vitae voluptas?</p>
+
+</body>
+</html>

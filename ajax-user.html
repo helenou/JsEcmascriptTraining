@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax user</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+
+            let error = document.querySelector(".invalid-feedback");
+
+            document.querySelector("#username").addEventListener('blur', function(){
+                let _this = this;
+                let value = this.value;
+
+                if(!value){
+                    this.classList.add('is-invalid');
+                    error.innerText = "";
+                    return;
+                }
+
+                // Asynchrone
+                xhr.onreadystatechange = function(){
+
+                    if( xhr.readyState === xhr.DONE && xhr.status === 200 ){
+                        if (xhr.response.exists){
+                            _this.classList.add('is-invalid');
+                            error.innerText = "Cet utilisateur existe déjà.";
+                        } else {
+                            _this.classList.add('is-valid');
+                        }
+                    }
+                };
+
+                xhr.open('GET', `http://localhost:8888/ajax/user.php?name=${value}`);
+                xhr.send();
+
+            });
+
+            document.querySelector("#username").addEventListener('focus', function(){
+                if (this.classList.contains('is-invalid') ){
+                    this.classList.remove('is-invalid');
+                }
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+<main class="container">
+    <header class="pt-5 border-bottom">
+        <h1>Ajax User</h1>
+    </header>
+
+    <section class="my-3">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" id="username" value="" placeholder="username ..." />
+            <div class="invalid-feedback"></div>
+            <small class="form-text text-muted">
+                Utilisateur existant: [John, Albert, Jane, Sophie, Marie]
+            </small>
+        </div>
+    </section>
+
+</main>
+
+
+</body>
+</html>

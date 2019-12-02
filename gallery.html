@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Galerie ? JS</title>
+    <style>
+        *{ box-sizing: border-box }
+        table {
+            width: 1000px;
+            margin: auto;
+            background-color: #000;
+        }
+        table img:hover{ cursor: pointer }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('.galerie').forEach(function(image){
+
+                image.addEventListener('mouseover', function(){
+                    this.src = this.getAttribute('data-over');
+                });
+
+                image.addEventListener('mouseout', function(){
+                    this.src = this.getAttribute('data-out');
+                });
+
+                image.addEventListener('click', function(){
+                    document.querySelector('#center').src = this.getAttribute('data-click');
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td>
+                <img src="./galerie/image_1P.jpg" alt="image 1" class="galerie"
+                     data-click="./galerie/image_1G.jpg" data-out="./galerie/image_1P.jpg"
+                     data-over="./galerie/image_1C.jpg" />
+            </td>
+            <td rowspan="2" width="500">
+                <img src="" alt="center" id="center" />
+            </td>
+            <td>
+                <img src="./galerie/image_2P.jpg" alt="image 2" class="galerie"
+                     data-click="./galerie/image_2G.jpg" data-out="./galerie/image_2P.jpg"
+                     data-over="./galerie/image_2C.jpg" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="./galerie/image_3P.jpg" alt="image 3" class="galerie"
+                     data-click="./galerie/image_3G.jpg" data-out="./galerie/image_3P.jpg"
+                     data-over="./galerie/image_3C.jpg" />
+            </td>
+            <td>
+                <img src="./galerie/image_4P.jpg" alt="image 4" class="galerie"
+                     data-click="./galerie/image_4G.jpg" data-out="./galerie/image_4P.jpg"
+                     data-over="./galerie/image_4C.jpg" />
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

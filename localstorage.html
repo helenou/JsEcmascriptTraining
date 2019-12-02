@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            document.querySelector('#btn').addEventListener('click', function(){
+                let value = document.querySelector('#username').value;
+
+                document.querySelector('#dataSaved').innerText = value;
+
+                if(window.localStorage){
+
+                    localStorage.setItem('username', value);
+
+                } else {
+                    alert('Le navigateur ne supporte pas le stockage local');
+                }
+            });
+
+            document.querySelector('#username').value = localStorage.getItem('username');
+            document.querySelector('#dataSaved').innerText = localStorage.getItem('username');
+
+            /*JSON.stringify({"name":value});
+            JSON.parse(Objtostr)*/
+        });
+    </script>
+</head>
+<body>
+
+<h1>Local Storage</h1>
+<hr />
+
+<div>
+    <label>Username:</label>
+    <input type="text" id="username" value="" />
+</div>
+<div>
+    <input type="button" id="btn" value="Sauvegarder" />
+</div>
+
+<p>Donnée sauvegarder: <span id="dataSaved"></span></p>
+
+</body>
+</html>

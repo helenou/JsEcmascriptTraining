@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>i18n</title>
+    <script>
+        let lang = 'fr-FR';
+        let devise = 'EUR';
+
+        function __(lang, devise){
+            let options = {year: "numeric", month: "long", day: "numeric", weekday: "long",
+                hour: "numeric", minute: "numeric", second: "numeric", // era: "long",
+                hour12: false};
+            let date = new Intl.DateTimeFormat(lang, options);
+            let prix = new Intl.NumberFormat(lang, {style: 'currency', currency: devise});
+
+            document.querySelector('#date').innerText = date.format(new Date());
+            document.querySelector('#prix').innerText = prix.format(1234567.99);
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            __(lang, devise);
+
+            document.querySelector('#pays').addEventListener('change', function(){
+                lang = this.value;
+                __(lang, devise);
+            });
+
+            document.querySelector('#currency').addEventListener('change', function(){
+                devise = this.value;
+                __(lang, devise);
+            });
+
+            // pas convaincu encore ...
+            document.querySelector('#qte').addEventListener('change', function(){
+                number = this.value;
+                let p = new Intl.PluralRules();
+
+                document.querySelector('#plural').innerText = p.select(number);
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h1>I18n</h1>
+    <hr />
+
+    <div>
+        <select id="pays">
+            <option value="fr-FR">Français</option>
+            <option value="de-DE">Allemand</option>
+            <option value="en-US">Américain</option>
+        </select>
+
+        <select id="currency">
+            <option value="EUR">Euro</option>
+            <option value="USD">Dollar</option>
+            <option value="JPY">Yen</option>
+        </select>
+    </div>
+
+    <div>
+        <p>Date: <span id="date"></span></p>
+        <p>Prix: <span id="prix"></span></p>
+    </div>
+
+    <hr />
+    <div>
+        <select id="qte">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+
+    <p id="plural"></p>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeudi 28 matin</title>
+
+    <script>
+
+        window.addEventListener('DOMContentLoaded',function () {
+        let element= document.querySelector('[data-name-color');
+
+        element.addEventListener('mouseover', function() {
+         // let color= this.getAttribute('data-color');
+            let color= this.dataset.color;
+            this.style.color= color;
+        });
+        element.addEventListener('mouseout', function() {
+            this.removeAttribute('style');
+        });
+
+        // http://demo.dawan.biz/webmaster/exercice9/images.zip
+
+
+
+/*        /!* IMG*!/
+        let img =document.querySelector('img');
+        img.addEventListener('mouseover', () => {
+            img.setAttribute('src', './images/images_1C.jpg' );
+
+            console.log(img.getAttribute('src'), img.src);
+        });
+        document.querySelector('#btn').addEventListener('click', function () {
+            if(img.getAttribute('src') === './images/images_2C.jpg' ) {
+                img.setAttribute('src', './images/images_1C.png') ;
+            }else {
+                img.setAttribute('src', './images/images_2C.png');
+            }
+        });*/
+    });
+    </script>
+    <style>
+      p {
+        background-color: #fff;
+      }
+      table img:hover {
+        cursor: pointer
+      }
+    </style>
+</head>
+
+
+<body>
+
+<hr/>
+
+<table style="width:100%" color="white", background-color="black";>
+  <tr>
+
+
+      <table>
+      <td><img id="btn" src="./images/image_1P.jpg" alt="left top pic"/></td><!--gauche-->
+      <td><img id="btn" src="./images/image_2P.jpg" alt="left down pic"/></td><!--droite-->
+    </table>
+  </tr>
+  <tr>
+
+      <td><img id="middle" src="./images/image_1C.jpg" alt="central pic" style/></td><!--milieu-->
+  </tr> <tr>
+
+    <table>
+      <td><img id="btn" src="./images/image_3P.jpg" alt="left top pic"/></td><!--gauche-->
+      <td><img id="btn" src="./images/image_4P.jpg" alt="left down pic"/></td><!--droite-->
+    </table>
+
+  </tr>
+</table>
+
+<hr/>
+
+</body>
+</html>

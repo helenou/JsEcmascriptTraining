@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag And Drop</title>
+    <style>
+        .dropzone{
+            display: flex;
+            height: 300px;
+            border: 2px dashed #ccc;
+            background-color: #eee;
+            color: #999;
+            font-size: 1.2em;
+            font-family: arial, Helvetica, sans-serif;
+        }
+        .dropzone p { margin: auto }
+        .active { background-color: #fff }
+        * { box-sizing: border-box }
+        .images {
+            margin: 15px -15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        img {
+            padding: 0 15px;
+            width: calc( 3 * 100% / 12 );
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            let dropzone = document.querySelector('.dropzone');
+
+            dropzone.addEventListener('dragover', function(e){
+                // e.target.classList.add('active');
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.add('active');
+            });
+
+            dropzone.addEventListener('dragleave', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.remove('active');
+            });
+
+            dropzone.addEventListener('drop', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.remove('active');
+                let files = e.dataTransfer.files;
+
+                let div = document.querySelector('.images') || 
+                    document.createElement('div');
+                div.setAttribute('class', 'images');
+
+                //dropzone.parentNode.insertBefore(div, dropzone.nextSibling);
+                dropzone.insertAdjacentElement('afterend', div);
+
+                for(let file of files){
+                    if(file.type.startsWith("image/")) {
+                        let reader = new FileReader();
+
+                        reader.onload = function(e){
+                            console.log(e);
+                            let image = new Image();
+                            image.setAttribute('src', e.target.result);
+                            image.setAttribute('alt', file.name);
+
+                            div.appendChild(image);
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<h1>Drag & Drop</h1>
+<hr />
+
+<div class="dropzone">
+    <p>Déposer vos images ici</p>
+</div>
+
+<p>Fin de la page</p>
+</body>
+</html>

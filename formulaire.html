@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            let inputs = document.querySelectorAll("#form [type=text]");
+
+            document.querySelector('#form').addEventListener('submit', function(evt){
+
+                inputs.forEach(function(elt){
+                    if(!elt.value){
+                        elt.style.borderColor = 'red';
+                        evt.preventDefault();
+                    }
+                });
+
+            });
+
+            inputs.forEach(function(elt){
+                elt.addEventListener('focus', function () {
+                    this.style.borderColor = 'initial';
+                });
+
+                elt.addEventListener('blur', function(){
+                    if(!this.value){
+                        this.style.borderColor = "red";
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h1>Formulaire</h1>
+    <hr />
+    <!-- onsubmit="return maFonction()" -->
+    <form method="post" action="" id="form" >
+        <div>
+            <label>Nom:</label>
+            <input type="text" id="nom" value="" />
+        </div>
+        <div>
+            <label>Prénom:</label>
+            <input type="text" id="prenom" value="" />
+        </div>
+        <div>
+            <input type="submit" id="envoyer" value="Envoyer" />
+        </div>
+    </form>
+</body>
+</html>

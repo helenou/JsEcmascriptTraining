@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form validation</title>
+
+  <script>
+      window.addEventListener('DOMContentLoaded',function () {
+
+          document.querySelector('form').addEventListener('submit', function(evt) {
+              let inputs = document.querySelectorAll("#form [type=text]");
+
+              document.querySelector("#form").addEventListener('submit', function(evt) {
+                  inputs.forEach(function(elt){
+                      if(!elt.value) {
+                          elt.style.borderColor = 'red';
+                          evt.preventDefault();
+                      }
+                  });
+              });
+          });
+
+
+      });
+  </script>
+</head>
+<body>
+<form method="post" action="" id="form">
+<div>
+  <label>Nom</label>
+  <input type="text" id="nom" value="" />
+
+  <label>Prenom</label>
+  <input type="text" id="prenom" value="" />
+
+  <input type="submit" id="send" value="Envoyer"</input>
+<!--   input not button!  // ELSE add: onsubmit="return maFonction()"-->
+</div>
+
+</form>
+
+</body>
+</html>

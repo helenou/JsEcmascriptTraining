@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async Await</title>
+    <script>
+        // new Promise resolve
+        async function isResolve(){
+            return 'Pas de soucis';
+        }
+
+        // new Promise reject
+        async function isReject() {
+            return new Error('Ceci est une erreur');
+        }
+
+        isResolve().then(console.log);
+        isReject().then(console.error);
+
+        function selectNumber(){
+            let randNumber = Math.floor(Math.random() * 9);
+            let randTime = Math.floor(Math.random() * 5000 + 1000);
+
+            return new Promise( (resolve) => {
+                setTimeout( () => {
+                    resolve(randNumber);
+                }, randTime);
+            });
+        }
+
+        async function addition() {
+            /*let number1 = await selectNumber();
+            let number2 = await selectNumber();*/
+
+            let num = await 10;
+
+            let [number1, number2] = await Promise.all([
+                selectNumber(),
+                selectNumber()
+            ]);
+
+            return number1+number2;
+        }
+
+        // console.log(data)
+        /*addition().then( function(data){
+
+        });*/
+        addition().then(console.log);
+
+        function getError(){
+            return new Promise( (resolve, reject) => {
+                reject('...');
+            });
+        }
+
+        async function testErreur(){
+            try {
+                let variable = await getError();
+            }catch (e) {
+                console.error(e);
+            }
+        }
+
+        testErreur();
+
+        console.log('fin du programme');
+    </script>
+</head>
+<body>
+
+<h1>Async Await</h1>
+<hr />
+
+
+
+</body>
+</html>

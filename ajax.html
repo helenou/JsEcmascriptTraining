@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            let xhr = new XMLHttpRequest();
+
+            document.querySelector('#readfile').addEventListener('click', function(){
+                // GET / POST / PUT / PATCH / DELETE / HEAD / CONNECT / OPTION / LINK
+
+                // Synchrone
+                /*xhr.open('GET', './document/file.txt', false);
+                xhr.send();
+
+                // xhr.responseType = 'text';
+                // document.querySelector(' #result').innerHTML = xhr.response;
+
+                document.querySelector('#result').innerHTML = xhr.responseText;*/
+
+                // Asynchrone
+                xhr.onreadystatechange = function(){
+                    /**
+                     * 0 - initialise la requête
+                     * 1 - en chargement
+                     * 2 - chargé
+                     * 3 - en cours de traitement
+                     * 4 - terminée
+                     */
+                    document.querySelector('#result').innerText = `${xhr.readyState} - Recherche en cours ...`;
+
+                    // http://login:password@www.mondomaine.fr
+
+                    if( xhr.readyState === xhr.DONE && xhr.status === 200 ){
+
+                        setTimeout(() => {
+                            document.querySelector('#result').innerHTML = xhr.responseText;
+                        }, 1500);
+
+                    }
+                };
+
+                xhr.open('GET', './document/file.txt');
+                xhr.send();
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<h1>AJAX <small>XmlHttpRequest</small></h1>
+<hr />
+
+<button id="readfile">Lire un fichier</button>
+
+<div id="result"></div>
+
+</body>
+</html>

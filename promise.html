@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+    <style>
+        .error { color: #f00 }
+    </style>
+    <script>
+        // asynchrone
+        function getRessource(){
+            // floor < / ceil > / round [0;4] < [5;9] >
+            let randError = Math.floor(Math.random() * 3 + 1); // random = [0; 1[
+            let randTime = Math.floor(Math.random() * 5000 + 1000); // 1 à 5s
+
+            return new Promise( (resolve, reject) => {
+                setTimeout( () => {
+                    if( randError === 3 ){
+                        reject('Les Ressources demandées ne sont pas disponibles');
+                    } else {
+                        resolve('Ceci est une information top secrète: "J\'ai un peu faim ..."');
+                    }
+                }, randTime);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+
+            document.querySelector('#btn').addEventListener('click', function(){
+                let reponse = document.querySelector('#reponse');
+
+                reponse.classList.remove('error');
+                reponse.innerText = "En attente d'une réponse ...";
+
+                // callback hell
+                getRessource().then((message) => {
+                    reponse.innerText = message;
+                }).catch( (error) => {
+                    reponse.innerText = error;
+                    reponse.classList.add('error');
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+<h1>Promise Async</h1>
+<hr />
+
+<button id="btn">Récupérer les ressources ...</button>
+
+<p id="reponse"></p>
+
+
+</body>
+</html>
